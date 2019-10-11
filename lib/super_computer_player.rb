@@ -6,9 +6,7 @@ class SuperComputerPlayer < ComputerPlayer
     node = TicTacToeNode.new(game.board, mark)
 
     node.children.each { |child| return child.prev_move_pos if child.winning_node?(mark) }
-    node.children.each do |child|
-      return child.prev_move_pos unless child.losing_node?(mark) 
-    end
+    node.children.each { |child| return child.prev_move_pos unless child.losing_node?(mark) }
     
     raise "Something's gone wrong: I should be able to force a tie.\n"
   end
